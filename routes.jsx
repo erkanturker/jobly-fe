@@ -1,9 +1,10 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "./src/App";
-import CompanyList from "./components/CompanyList";
+import CompanyList from "./components/Companies/CompanyList";
 import Layout from "./components/Layout";
-import CompanyDetail from "./components/CompanyDetail";
+import CompanyDetail from "./components/Companies/CompanyDetail";
+import JobList from "./components/Jobs/JobList";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "companies/:handle",
         element: <CompanyDetail />,
+      },
+      {
+        path: "jobs",
+        element: <JobList />,
       },
     ],
   },

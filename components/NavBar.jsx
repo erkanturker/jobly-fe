@@ -13,7 +13,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <Nav className="col-auto">
           <Nav.Link href="/companies">Companies</Nav.Link>
-          <Nav.Link href="#features">Jobs</Nav.Link>
+          <Nav.Link href="/jobs">Jobs</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

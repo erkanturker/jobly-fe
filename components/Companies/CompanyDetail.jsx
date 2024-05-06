@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import JobCard from "./JobCard";
-import JoblyApi from "../src/api";
+import CompanyJobCard from "./CompanyJobCard";
+import JoblyApi from "../../src/api";
 import { useParams } from "react-router-dom";
 
 const CompanyDetail = () => {
@@ -20,8 +20,13 @@ const CompanyDetail = () => {
     <div>
       <h1>{company.name}</h1>
       <p>{company.description}</p>
-      {company.jobs.map(({ title, salary, equity }) => (
-        <JobCard title={title} salary={salary} equity={equity} />
+      {company.jobs.map(({ id, title, salary, equity }) => (
+        <CompanyJobCard
+          key={id}
+          title={title}
+          salary={salary}
+          equity={equity}
+        />
       ))}
     </div>
   );

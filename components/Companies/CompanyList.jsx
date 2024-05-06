@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import JoblyApi from "../src/api";
+import JoblyApi from "../../src/api";
 import CompanyCard from "./CompanyCard";
-import SearchBox from "./SearchBox";
+import SearchBox from "../SearchBox";
 
 export const CompanyList = () => {
   const [companies, setCompanies] = useState([]);
@@ -9,8 +9,6 @@ export const CompanyList = () => {
   useEffect(() => {
     JoblyApi.getAllCompanies().then((res) => setCompanies(res));
   }, []);
-
-  console.log(companies);
 
   return (
     <>
