@@ -8,11 +8,11 @@ const NavBar = () => {
   return (
     <Navbar>
       <Container fluid className="px-0 m-1">
-        <Navbar.Brand href="#home" className="col-auto">
+        <Navbar.Brand href="/" className="col-auto">
           Jobly
         </Navbar.Brand>
         <Nav className="col-auto">
-          <Nav.Link href="#home">Companies</Nav.Link>
+          <Nav.Link href="/companies">Companies</Nav.Link>
           <Nav.Link href="#features">Jobs</Nav.Link>
         </Nav>
       </Container>
