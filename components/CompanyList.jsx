@@ -16,6 +16,7 @@ export const CompanyList = () => {
       {companies.map((company) => (
         <CompanyCard
           key={company.handle}
+          handle={company.handle}
           name={company.name}
           description={company.description}
         />

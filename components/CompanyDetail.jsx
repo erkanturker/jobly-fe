@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import JoblyApi from "../src/api";
+import { useParams } from "react-router-dom";
 
 const CompanyDetail = () => {
+  const { handle } = useParams();
   const [company, setCompany] = useState(null);
 
   useEffect(() => {
-    JoblyApi.getCompany("humphrey-llc").then((res) => setCompany(res));
+    JoblyApi.getCompany(`${handle}`).then((res) => setCompany(res));
   }, []);
 
   // Wait until company is loaded before rendering

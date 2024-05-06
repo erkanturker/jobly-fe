@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./src/App";
 import CompanyList from "./components/CompanyList";
 import Layout from "./components/Layout";
+import CompanyDetail from "./components/CompanyDetail";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +12,12 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <App /> },
       {
-        path: "/companies",
+        path: "companies",
         element: <CompanyList />,
+      },
+      {
+        path: "companies/:handle",
+        element: <CompanyDetail />,
       },
     ],
   },

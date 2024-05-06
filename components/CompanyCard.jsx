@@ -1,14 +1,17 @@
 import Card from "react-bootstrap/Card";
 
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const CompanyCard = ({ name, description }) => {
+export const CompanyCard = ({ handle, name, description }) => {
   return (
     <Card className="mb-3">
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Text>{description}</Card.Text>
-      </Card.Body>
+      <Link to={`/companies/${handle}`}>
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>{description}</Card.Text>
+        </Card.Body>
+      </Link>
     </Card>
   );
 };
