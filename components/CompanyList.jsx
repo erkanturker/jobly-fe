@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JoblyApi from "../src/api";
 import CompanyCard from "./CompanyCard";
+import SearchBox from "./SearchBox";
 
 export const CompanyList = () => {
   const [companies, setCompanies] = useState([]);
@@ -13,6 +14,7 @@ export const CompanyList = () => {
 
   return (
     <>
+      <SearchBox />
       {companies.map((company) => (
         <CompanyCard
           key={company.handle}
