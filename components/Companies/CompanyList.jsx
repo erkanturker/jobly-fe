@@ -5,14 +5,33 @@ import SearchBox from "../SearchBox";
 
 export const CompanyList = () => {
   const [companies, setCompanies] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    JoblyApi.getAllCompanies().then((res) => setCompanies(res));
-  }, []);
+    const fetchData = async () => {
+      try {
+        let data;
+        if (!query) {
+          data = await JoblyApi.getAllCompanies();
+        } else {
+          data = await JoblyApi.getCompanyByName(query);
+        }
+        setCompanies(data);
+      } catch (error) {
+        console.error("Error fetching companies:", error);
+      }
+    };
+
+    fetchData();
+  }, [query]);
+
+  const handleSetQuery = (query) => {
+    setQuery(query);
+  };
 
   return (
     <>
-      <SearchBox />
+      <SearchBox onSearch={handleSetQuery} />
       {companies.map((company) => (
         <CompanyCard
           key={company.handle}
