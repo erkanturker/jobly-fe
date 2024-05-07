@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
+import useJobs from "../../Hooks/useJobs";
 import SearchBox from "../SearchBox";
 import JobDetailCard from "./JobDetailCard";
-import useJobs from "../../Hooks/useJobs";
-import Spinner from "react-bootstrap/Spinner";
 
 const JobList = () => {
   const [query, setQuery] = useState("");

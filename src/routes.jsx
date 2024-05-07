@@ -6,13 +6,14 @@ import Layout from "./components/Layout";
 import CompanyDetail from "./components/Companies/CompanyDetail";
 import JobList from "./components/Jobs/JobList";
 import LoginForm from "./components/Auth/LoginForm";
+import MainPage from "./components/MainPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <App />,
     children: [
-      { index: true, element: <App /> },
+      { index: true, element: <MainPage /> },
       {
         path: "companies",
         element: <CompanyList />,

@@ -3,10 +3,17 @@ import useCompanies from "../../Hooks/useCompanies";
 import SearchBox from "../SearchBox";
 import CompanyCard from "./CompanyCard";
 import Spinner from "react-bootstrap/Spinner";
+import useAuth from "../../Hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 export const CompanyList = () => {
+  const isLoggedIn = useAuth();
   const [query, setQuery] = useState("");
   const { data: companies, error, isLoading } = useCompanies(query);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   const handleSetQuery = (query) => {
     setQuery(query);

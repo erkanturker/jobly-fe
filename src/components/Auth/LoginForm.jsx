@@ -1,17 +1,24 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import useFields from "../../Hooks/useFields";
 import JoblyApi from "../../api";
+import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../Hooks/useLocalStorage";
 
 const LoginForm = () => {
   const [formData, setFormData] = useFields({ username: "", password: "" });
+  const [token, setToken] = useLocalStorage("authToken", "");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    JoblyApi.authToken(formData).then((res) => {
-      JoblyApi.token = res;
-      console.log(JoblyApi.token);
-    });
+    JoblyApi.authToken(formData)
+      .then((res) => {
+        JoblyApi.token = res;
+        setToken(res);
+        navigate("/", { replace: true });
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
