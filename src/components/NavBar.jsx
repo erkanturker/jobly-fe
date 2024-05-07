@@ -18,6 +18,9 @@ const NavBar = () => {
           <Nav.Link as={NavLink} to="/jobs" activeclassname="active">
             Jobs
           </Nav.Link>
+          <Nav.Link as={NavLink} to="/login" activeclassname="active">
+            Login
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

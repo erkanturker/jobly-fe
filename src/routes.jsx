@@ -5,6 +5,7 @@ import CompanyList from "./components/Companies/CompanyList";
 import Layout from "./components/Layout";
 import CompanyDetail from "./components/Companies/CompanyDetail";
 import JobList from "./components/Jobs/JobList";
+import LoginForm from "./components/Auth/LoginForm";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "jobs",
         element: <JobList />,
+      },
+      {
+        path: "login",
+        element: <LoginForm />,
       },
     ],
   },
