@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
-import JoblyApi from "../../src/api";
 import SearchBox from "../SearchBox";
 import JobDetailCard from "./JobDetailCard";
+import useJobs from "../../Hooks/useJobs";
+import Spinner from "react-bootstrap/Spinner";
 
 const JobList = () => {
-  const [jobs, setJobs] = useState([]);
   const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let data;
-        if (!query) {
-          data = await JoblyApi.getAllJobs();
-        } else {
-          data = await JoblyApi.getJobsByTitle(query);
-        }
-        setJobs(data);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-      }
-    };
-    fetchData();
-  }, [query]);
+  const { data: jobs, error, isLoading } = useJobs(query);
 
   const handleSetQuery = (query) => {
     setQuery(query);
@@ -31,6 +15,15 @@ const JobList = () => {
   return (
     <>
       <SearchBox onSearch={handleSetQuery} />
+
+      {isLoading && (
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
+
+      {error && <div>Error fetching companies: {error.message}</div>}
+
       {jobs.map(({ id, title, companyName, salary, equity }) => (
         <JobDetailCard
           title={title}
