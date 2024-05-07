@@ -33,6 +33,13 @@ class JoblyApi {
     }
   }
 
+  /** Get the current user. */
+
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
   static async authToken(data) {
     let res = await this.request(`auth/token`, data, "post");
     return res.token;

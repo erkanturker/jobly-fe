@@ -1,29 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const useLocalStorage = (key, defaultValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    const value = window.localStorage.getItem(key, defaultValue);
-    try {
-      if (value) {
-        return JSON.parse(value);
-      } else {
-        window.localStorage.setItem(key, JSON.stringify(defaultValue));
-        return defaultValue;
-      }
-    } catch (error) {
-      return defaultValue;
-    }
-  });
+const useLocalStorage = (key, firstVal = null) => {
+  const initialValue = window.localStorage.getItem(key) || firstVal;
 
-  const setValue = (newValue) => {
-    try {
-      window.localStorage.setItem(key, newValue);
-    } catch (error) {
-      console.log(error);
+  const [storedValue, setStoredValue] = useState(initialValue);
+
+  useEffect(() => {
+    console.log(`hooks useLocalStorage ${storedValue}`);
+
+    if (storedValue === null) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, storedValue);
     }
-    setStoredValue(newValue);
-  };
-  return [storedValue, setValue];
+  }, [key, storedValue]);
+
+  return [storedValue, setStoredValue];
 };
 
 export default useLocalStorage;
