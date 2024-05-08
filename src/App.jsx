@@ -41,6 +41,17 @@ function App() {
     }
   };
 
+  const signup = async (signupData) => {
+    try {
+      const token = await JoblyApi.createUser(signupData);
+      setToken(token);
+      return { success: true };
+    } catch (error) {
+      console.error("signup error:" + error);
+      return { success: false };
+    }
+  };
+
   const logout = () => {
     setCurrentUser(null);
     setToken(null);
@@ -49,7 +60,7 @@ function App() {
   return (
     <>
       <NavBar onLogout={logout} currentUser={currentUser} />
-      <Outlet context={{ login, currentUser }} />
+      <Outlet context={{ login, signup, currentUser }} />
     </>
   );
 }

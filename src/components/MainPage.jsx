@@ -18,7 +18,7 @@ const MainPage = () => {
           </Link>
           <Link
             className="btn btn-primary font-weight-bold mr-3 mx-2"
-            to="/login"
+            to="/signup"
           >
             Sign Up
           </Link>

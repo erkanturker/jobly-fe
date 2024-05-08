@@ -2,9 +2,10 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import useFields from "../../Hooks/useFields";
+import useFormData from "../../Hooks/useFormData";
 
 const LoginForm = () => {
-  const [formData, setFormData] = useFields({ username: "", password: "" });
+  const [formData, setFormData] = useFormData({ username: "", password: "" });
   const navigate = useNavigate();
   const { login } = useOutletContext();
 

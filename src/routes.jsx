@@ -7,6 +7,7 @@ import CompanyList from "./components/Companies/CompanyList";
 import JobList from "./components/Jobs/JobList";
 import MainPage from "./components/MainPage";
 import PrivateRoutes from "./PrivateRoutes";
+import SignupForm from "./components/Auth/SignupForm";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <LoginForm />,
+      },
+      {
+        path: "/signup",
+        element: <SignupForm />,
       },
       {
         element: <PrivateRoutes />,

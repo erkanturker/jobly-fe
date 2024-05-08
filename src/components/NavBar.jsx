@@ -21,9 +21,14 @@ const NavBar = ({ onLogout, currentUser }) => {
 
         <Nav className="col-auto">
           {!isLoggedIn && (
-            <Nav.Link as={NavLink} to="/login" activeclassname="active">
-              Login
-            </Nav.Link>
+            <>
+              <Nav.Link as={NavLink} to="/login" activeclassname="active">
+                Login
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/signup" activeclassname="active">
+                Sign Up
+              </Nav.Link>
+            </>
           )}
           {isLoggedIn && (
             <>

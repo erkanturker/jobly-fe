@@ -45,6 +45,11 @@ class JoblyApi {
     return res.token;
   }
 
+  static async createUser(data) {
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+
   // Individual API routes
 
   /** Get details on a company by handle. */
