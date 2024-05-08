@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import UserContext from "../UserContext";
 
-const NavBar = () => {
+const NavBar = ({ onLogout }) => {
   const currentUser = useContext(UserContext);
 
   let isLoggedIn;
@@ -36,7 +36,12 @@ const NavBar = () => {
               <Nav.Link as={NavLink} to="/jobs" activeclassname="active">
                 Jobs
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/login" activeclassname="active">
+              <Nav.Link
+                onClick={onLogout}
+                as={NavLink}
+                to="/login"
+                activeclassname="active"
+              >
                 Logout
               </Nav.Link>
             </>

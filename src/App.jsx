@@ -1,11 +1,11 @@
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
 import useLocalStorage from "./Hooks/useLocalStorage";
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import JoblyApi from "./api";
 import UserContext from "./UserContext";
+import JoblyApi from "./api";
+import NavBar from "./components/NavBar";
 
 export const TOKEN_STORAGE_ID = "authToken";
 
@@ -32,10 +32,15 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+  const logout = () => {
+    setCurrentUser(null);
+    setToken(null);
+  };
+
   return (
     <>
       <UserContext.Provider value={currentUser}>
-        <NavBar />
+        <NavBar onLogout={logout} />
         <Outlet />
       </UserContext.Provider>
     </>
