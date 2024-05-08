@@ -7,7 +7,6 @@ import UserContext from "../UserContext";
 
 const NavBar = ({ onLogout }) => {
   const currentUser = useContext(UserContext);
-
   let isLoggedIn;
   if (currentUser === null) {
     isLoggedIn = false;
@@ -39,7 +38,7 @@ const NavBar = ({ onLogout }) => {
               <Nav.Link
                 onClick={onLogout}
                 as={NavLink}
-                to="/login"
+                to="/"
                 activeclassname="active"
               >
                 Logout

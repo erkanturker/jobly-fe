@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../UserContext";
 
 const MainPage = () => {
-  return <div>MainPage</div>;
+  const { firstName, lastName } = useContext(UserContext) || {};
+
+  return (
+    <div>
+      {" "}
+      {firstName && lastName ? `Welcome Back ${firstName} ${lastName}` : ""}
+    </div>
+  );
 };
 
 export default MainPage;

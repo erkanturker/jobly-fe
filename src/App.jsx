@@ -32,6 +32,17 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+  const login = async (loginData) => {
+    try {
+      const token = await JoblyApi.authToken(loginData);
+      setToken(token);
+      return { success: true };
+    } catch (error) {
+      console.error("login failed", error);
+      return { success: false, error };
+    }
+  };
+
   const logout = () => {
     setCurrentUser(null);
     setToken(null);
@@ -41,7 +52,7 @@ function App() {
     <>
       <UserContext.Provider value={currentUser}>
         <NavBar onLogout={logout} />
-        <Outlet />
+        <Outlet context={{ login }} />
       </UserContext.Provider>
     </>
   );
