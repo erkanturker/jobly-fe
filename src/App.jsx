@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import useLocalStorage from "./Hooks/useLocalStorage";
-import UserContext from "./UserContext";
 import JoblyApi from "./api";
 import NavBar from "./components/NavBar";
 
@@ -20,7 +19,6 @@ function App() {
       if (token) {
         try {
           let { username } = jwtDecode(token);
-          console.log(username);
           JoblyApi.token = token;
           let currentUser = await JoblyApi.getCurrentUser(username);
           setCurrentUser(currentUser);
@@ -50,10 +48,8 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={currentUser}>
-        <NavBar onLogout={logout} />
-        <Outlet context={{ login }} />
-      </UserContext.Provider>
+      <NavBar onLogout={logout} currentUser={currentUser} />
+      <Outlet context={{ login, currentUser }} />
     </>
   );
 }

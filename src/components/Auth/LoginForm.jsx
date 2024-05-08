@@ -1,13 +1,10 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
-import useFields from "../../Hooks/useFields";
-import JoblyApi from "../../api";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import useLocalStorage from "../../Hooks/useLocalStorage";
+import useFields from "../../Hooks/useFields";
 
 const LoginForm = () => {
   const [formData, setFormData] = useFields({ username: "", password: "" });
-  const [token, setToken] = useLocalStorage("authToken", "");
   const navigate = useNavigate();
   const { login } = useOutletContext();
 
@@ -15,7 +12,6 @@ const LoginForm = () => {
     e.preventDefault();
 
     let result = await login(formData);
-    console.log(result);
     if (result.success) {
       navigate("/", { replace: true });
     }

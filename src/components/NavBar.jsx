@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-import UserContext from "../UserContext";
 
-const NavBar = ({ onLogout }) => {
-  const currentUser = useContext(UserContext);
+const NavBar = ({ onLogout, currentUser }) => {
   let isLoggedIn;
   if (currentUser === null) {
     isLoggedIn = false;

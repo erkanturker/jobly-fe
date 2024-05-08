@@ -1,13 +1,29 @@
-import React, { useContext } from "react";
-import UserContext from "../UserContext";
+import React from "react";
+import { Link, useOutletContext } from "react-router-dom";
 
 const MainPage = () => {
-  const { firstName, lastName } = useContext(UserContext) || {};
+  const { currentUser } = useOutletContext() || {};
 
   return (
     <div>
-      {" "}
-      {firstName && lastName ? `Welcome Back ${firstName} ${lastName}` : ""}
+      {currentUser?.firstName && currentUser?.lastName ? (
+        `Welcome Back ${currentUser?.firstName} ${currentUser?.lastName}`
+      ) : (
+        <>
+          <Link
+            className="btn btn-primary font-weight-bold mr-3 mx-2"
+            to="/login"
+          >
+            Log in
+          </Link>
+          <Link
+            className="btn btn-primary font-weight-bold mr-3 mx-2"
+            to="/login"
+          >
+            Sign Up
+          </Link>
+        </>
+      )}
     </div>
   );
 };
