@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = ({ onLogout, currentUser }) => {
   let isLoggedIn;
+
   if (currentUser === null) {
     isLoggedIn = false;
   } else {
@@ -44,7 +45,7 @@ const NavBar = ({ onLogout, currentUser }) => {
                 to="/"
                 activeclassname="active"
               >
-                Logout
+                Log out {currentUser.username}
               </Nav.Link>
             </>
           )}

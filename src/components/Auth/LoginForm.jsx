@@ -7,7 +7,6 @@ import useFormData from "../../Hooks/useFormData";
 const LoginForm = () => {
   const [formData, setFormData] = useFormData({ username: "", password: "" });
   const [formErrors, setFormErrors] = useState([]);
-
   const navigate = useNavigate();
   const { login, currentUser } = useOutletContext();
 
