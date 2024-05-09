@@ -5,6 +5,7 @@ const useJobs = (query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +15,7 @@ const useJobs = (query) => {
         if (!query) {
           result = await JoblyApi.getAllJobs();
         } else {
-          result = await JoblyApi.getAllJobs(query);
+          result = await JoblyApi.getJobsByTitle(query);
         }
         setData(result);
         setIsLoading(false);
