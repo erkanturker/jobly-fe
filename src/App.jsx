@@ -52,6 +52,24 @@ function App() {
     }
   };
 
+  const updateUser = async (username, updateData) => {
+    try {
+      const updatedUser = await JoblyApi.updateUser(username, updateData);
+      setCurrentUser((user) => ({
+        ...user,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+      }));
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+  };
+
   const logout = () => {
     setCurrentUser(null);
     setToken(null);
@@ -62,7 +80,7 @@ function App() {
       <NavBar onLogout={logout} currentUser={currentUser} />
       <div className="container mt-5">
         <div className="row justify-content-center">
-          <Outlet context={{ login, signup, currentUser }} />
+          <Outlet context={{ login, signup, currentUser, updateUser }} />
         </div>
       </div>
     </>

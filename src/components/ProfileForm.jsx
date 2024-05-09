@@ -1,19 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import useFormData from "../Hooks/useFormData";
 import { useOutletContext } from "react-router-dom";
+import CustomAlert from "../CommonJsx/CustomAlert";
 
 const ProfileForm = () => {
-  const { currentUser } = useOutletContext();
-  const [formData, setFormData] = useFormData(currentUser);
+  const { currentUser, updateUser } = useOutletContext();
+  const { username, firstName, lastName, email } = currentUser;
+  const [formErrors, setFormErrors] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
+  const [formData, setFormData] = useFormData({
+    username,
+    firstName,
+    lastName,
+    email,
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const { username, ...sendingData } = formData;
+    let result = await updateUser(currentUser.username, sendingData);
+
+    if (result.success) {
+      setIsSaved(true);
+    } else {
+      setFormErrors((data) => [...data, result.error]);
+    }
   };
 
   return (
     <div className="col-md-4">
+      {formErrors.length > 0 && (
+        <CustomAlert
+          type="danger"
+          title="Oh snap! You got an error!"
+          messages={formErrors}
+        />
+      )}
+      {isSaved && (
+        <CustomAlert
+          type="success"
+          title="Success"
+          messages={["Your changes are saved"]}
+        />
+      )}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username:</Form.Label>
@@ -22,7 +52,7 @@ const ProfileForm = () => {
             type="text"
             placeholder="Enter username"
             disabled
-            value={formData.username}
+            value={currentUser.username}
           />
         </Form.Group>
 

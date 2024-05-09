@@ -18,7 +18,6 @@ const LoginForm = () => {
       navigate("/");
     } else {
       setFormErrors((data) => [...data, result.error]);
-      console.log("from form: " + result.error);
     }
   };
 
