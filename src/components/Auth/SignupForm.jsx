@@ -1,24 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import useFormData from "../../Hooks/useFormData";
 import { Button, Form } from "react-bootstrap";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import CustomAlert from "../../CommonJsx/CustomAlert";
 
 const SignupForm = () => {
   const [formData, setFormData] = useFormData();
-  const { signup } = useOutletContext();
+  const [formErrors, setFormErrors] = useState([]);
+  const { signup, currentUser } = useOutletContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     let result = await signup(formData);
     if (result.success) {
       navigate("/");
+    } else {
+      setFormErrors((data) => [...data, result.error]);
     }
   };
 
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Form className="mx-2" onSubmit={handleSubmit}>
+      {formErrors.length > 0 && (
+        <CustomAlert
+          type="danger"
+          title="Oh snap! You got an error!"
+          messages={formErrors}
+        />
+      )}
+
       <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control name="username" type="text" onChange={setFormData} />

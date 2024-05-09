@@ -1,25 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import useFields from "../../Hooks/useFields";
+import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import CustomAlert from "../../CommonJsx/CustomAlert";
 import useFormData from "../../Hooks/useFormData";
 
 const LoginForm = () => {
   const [formData, setFormData] = useFormData({ username: "", password: "" });
+  const [formErrors, setFormErrors] = useState([]);
+
   const navigate = useNavigate();
-  const { login } = useOutletContext();
+  const { login, currentUser } = useOutletContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let result = await login(formData);
     if (result.success) {
-      navigate("/", { replace: true });
+      navigate("/");
+    } else {
+      setFormErrors((data) => [...data, result.error]);
+      console.log("from form: " + result.error);
     }
   };
 
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
+      {formErrors.length > 0 && (
+        <CustomAlert
+          type="danger"
+          title="Oh snap! You got an error!"
+          messages={formErrors}
+        />
+      )}
+
       <Form.Group controlId="formBasicUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control

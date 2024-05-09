@@ -48,7 +48,7 @@ function App() {
       return { success: true };
     } catch (error) {
       console.error("signup error:" + error);
-      return { success: false };
+      return { success: false, error };
     }
   };
 
