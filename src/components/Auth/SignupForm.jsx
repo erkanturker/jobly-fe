@@ -7,6 +7,7 @@ import CustomAlert from "../../CommonJsx/CustomAlert";
 const SignupForm = () => {
   const [formData, setFormData] = useFormData();
   const [formErrors, setFormErrors] = useState([]);
+  const [alertVisible, setAlertVisible] = useState(true);
   const { signup, currentUser } = useOutletContext();
   const navigate = useNavigate();
 
@@ -16,7 +17,8 @@ const SignupForm = () => {
     if (result.success) {
       navigate("/");
     } else {
-      setFormErrors((data) => [...data, result.error]);
+      setFormErrors(result.error);
+      setAlertVisible(true);
     }
   };
 
@@ -32,6 +34,8 @@ const SignupForm = () => {
             type="danger"
             title="Oh snap! You got an error!"
             messages={formErrors}
+            visible={alertVisible}
+            onClose={() => setAlertVisible(false)}
           />
         )}
 

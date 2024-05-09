@@ -15,6 +15,7 @@ const ProfileForm = () => {
     lastName,
     email,
   });
+  const [alertVisible, setAlertVisible] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +24,10 @@ const ProfileForm = () => {
 
     if (result.success) {
       setIsSaved(true);
+      setAlertVisible(true);
     } else {
-      setFormErrors((data) => [...data, result.error]);
+      setFormErrors(result.error);
+      setAlertVisible(true);
     }
   };
 
@@ -35,6 +38,8 @@ const ProfileForm = () => {
           type="danger"
           title="Oh snap! You got an error!"
           messages={formErrors}
+          visible={alertVisible}
+          onClose={() => setAlertVisible(false)}
         />
       )}
       {isSaved && (
@@ -42,6 +47,8 @@ const ProfileForm = () => {
           type="success"
           title="Success"
           messages={["Your changes are saved"]}
+          visible={alertVisible}
+          onClose={() => setAlertVisible(false)}
         />
       )}
       <Form onSubmit={handleSubmit}>

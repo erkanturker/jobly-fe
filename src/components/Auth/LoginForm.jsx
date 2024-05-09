@@ -7,6 +7,8 @@ import useFormData from "../../Hooks/useFormData";
 const LoginForm = () => {
   const [formData, setFormData] = useFormData({ username: "", password: "" });
   const [formErrors, setFormErrors] = useState([]);
+  const [alertVisible, setAlertVisible] = useState(true);
+
   const navigate = useNavigate();
   const { login, currentUser } = useOutletContext();
 
@@ -17,7 +19,8 @@ const LoginForm = () => {
     if (result.success) {
       navigate("/");
     } else {
-      setFormErrors((data) => [...data, result.error]);
+      setFormErrors(result.error);
+      setAlertVisible(true);
     }
   };
 
@@ -33,6 +36,8 @@ const LoginForm = () => {
             type="danger"
             title="Oh snap! You got an error!"
             messages={formErrors}
+            visible={alertVisible}
+            onClose={() => setAlertVisible(false)}
           />
         )}
 
