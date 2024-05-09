@@ -8,6 +8,7 @@ import JobList from "./components/Jobs/JobList";
 import MainPage from "./components/MainPage";
 import PrivateRoutes from "./PrivateRoutes";
 import SignupForm from "./components/Auth/SignupForm";
+import ProfileForm from "./components/ProfileForm";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
           {
             path: "jobs",
             element: <JobList />,
+          },
+          {
+            path: "profile",
+            element: <ProfileForm />,
           },
         ],
       },

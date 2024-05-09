@@ -44,6 +44,9 @@ const NavBar = ({ onLogout, currentUser }) => {
               <Nav.Link as={NavLink} to="/jobs" activeclassname="active">
                 Jobs
               </Nav.Link>
+              <Nav.Link as={NavLink} to="/profile" activeclassname="active">
+                Profile
+              </Nav.Link>
               <Nav.Link
                 onClick={onLogout}
                 as={NavLink}
