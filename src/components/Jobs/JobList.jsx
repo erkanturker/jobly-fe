@@ -13,7 +13,7 @@ const JobList = () => {
   };
 
   return (
-    <>
+    <div className="col-md-7">
       <SearchBox onSearch={handleSetQuery} />
 
       {isLoading && (
@@ -33,7 +33,7 @@ const JobList = () => {
           key={id}
         />
       ))}
-    </>
+    </div>
   );
 };
 

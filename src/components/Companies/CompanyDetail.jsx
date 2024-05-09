@@ -17,7 +17,7 @@ const CompanyDetail = () => {
   }
 
   return (
-    <div>
+    <div className="col-md-7">
       <h1>{company.name}</h1>
       <p>{company.description}</p>
       {company.jobs.map(({ id, title, salary, equity }) => (

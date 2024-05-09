@@ -27,43 +27,45 @@ const LoginForm = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {formErrors.length > 0 && (
-        <CustomAlert
-          type="danger"
-          title="Oh snap! You got an error!"
-          messages={formErrors}
-        />
-      )}
+    <div className="col-md-4">
+      <Form onSubmit={handleSubmit}>
+        {formErrors.length > 0 && (
+          <CustomAlert
+            type="danger"
+            title="Oh snap! You got an error!"
+            messages={formErrors}
+          />
+        )}
 
-      <Form.Group controlId="formBasicUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          name="username"
-          type="text"
-          placeholder="Enter username"
-          required
-          value={formData.username}
-          onChange={setFormData}
-        />
-      </Form.Group>
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            name="username"
+            type="text"
+            placeholder="Enter username"
+            required
+            value={formData.username}
+            onChange={setFormData}
+          />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          required
-          value={formData.password}
-          onChange={setFormData}
-        />
-      </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            required
+            value={formData.password}
+            onChange={setFormData}
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit" className="mt-1">
-        Login
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit" className="mt-1">
+          Login
+        </Button>
+      </Form>
+    </div>
   );
 };
 

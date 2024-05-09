@@ -14,9 +14,14 @@ const NavBar = ({ onLogout, currentUser }) => {
   }
 
   return (
-    <Navbar>
-      <Container fluid className="px-0 m-1">
-        <Navbar.Brand as={NavLink} to="/" className="col-auto">
+    <Navbar bg="primary" data-bs-theme="dark">
+      <Container fluid className="px-2">
+        <Navbar.Brand
+          as={NavLink}
+          to="/"
+          className="col-auto"
+          activeclassname="active"
+        >
           Jobly
         </Navbar.Brand>
 

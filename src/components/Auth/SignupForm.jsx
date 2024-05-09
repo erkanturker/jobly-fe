@@ -25,44 +25,50 @@ const SignupForm = () => {
   }
 
   return (
-    <Form className="mx-2" onSubmit={handleSubmit}>
-      {formErrors.length > 0 && (
-        <CustomAlert
-          type="danger"
-          title="Oh snap! You got an error!"
-          messages={formErrors}
-        />
-      )}
+    <div className="col-md-4">
+      <Form className="mx-2" onSubmit={handleSubmit}>
+        {formErrors.length > 0 && (
+          <CustomAlert
+            type="danger"
+            title="Oh snap! You got an error!"
+            messages={formErrors}
+          />
+        )}
 
-      <Form.Group className="mb-3" controlId="formBasicUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control name="username" type="text" onChange={setFormData} />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control name="username" type="text" onChange={setFormData} />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicFirstName">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control name="firstName" type="text" onChange={setFormData} />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicFirstName">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control name="firstName" type="text" onChange={setFormData} />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicLastName">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control name="lastName" type="text" onChange={setFormData} />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicLastName">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control name="lastName" type="text" onChange={setFormData} />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control name="password" type="password" onChange={setFormData} />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            name="password"
+            type="password"
+            onChange={setFormData}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control name="email" type="email" onChange={setFormData} />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control name="email" type="email" onChange={setFormData} />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 

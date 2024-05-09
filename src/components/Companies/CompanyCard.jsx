@@ -12,7 +12,7 @@ export const CompanyCard = ({ handle, name, description }) => {
       >
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{description}</Card.Text>
+          <Card.Text className="text-secondary">{description}</Card.Text>
         </Card.Body>
       </Link>
     </Card>

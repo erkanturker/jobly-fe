@@ -9,8 +9,10 @@ const JobDetailCard = ({ title, companyName, salary, equity }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text className="mb-2">{companyName}</Card.Text>
         <Card.Text>Salary: {salary}</Card.Text>
-        <Card.Text>Equity: {equity}</Card.Text>
-        <Button variant="danger">Apply</Button>
+        <div className="d-flex justify-content-between">
+          <Card.Text>Equity: {equity}</Card.Text>
+          <Button variant="success">Apply</Button>
+        </div>
       </Card.Body>
     </Card>
   );

@@ -60,7 +60,11 @@ function App() {
   return (
     <>
       <NavBar onLogout={logout} currentUser={currentUser} />
-      <Outlet context={{ login, signup, currentUser }} />
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <Outlet context={{ login, signup, currentUser }} />
+        </div>
+      </div>
     </>
   );
 }

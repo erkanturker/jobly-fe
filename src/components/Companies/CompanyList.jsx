@@ -20,9 +20,8 @@ export const CompanyList = () => {
   };
 
   return (
-    <>
+    <div className="col-md-7">
       <SearchBox onSearch={handleSetQuery} />
-
       {isLoading && (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -38,7 +37,7 @@ export const CompanyList = () => {
           description={company.description}
         />
       ))}
-    </>
+    </div>
   );
 };
 

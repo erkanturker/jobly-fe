@@ -8,8 +8,10 @@ const CompanyJobCard = ({ title, salary, equity }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>Salary: {salary}</Card.Text>
-        <Card.Text>Equity: {equity}</Card.Text>
-        <Button variant="danger">Apply</Button>
+        <div className="d-flex justify-content-between">
+          <Card.Text>Equity: {equity}</Card.Text>
+          <Button variant="success">Apply</Button>
+        </div>
       </Card.Body>
     </Card>
   );

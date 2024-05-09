@@ -16,17 +16,21 @@ const SearchBox = ({ onSearch }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="d-flex mb-4">
-      <Form.Control
-        type="text"
-        placeholder="Search"
-        value={query}
-        onChange={handleChange}
-      />
-      <Button type="submit" variant="primary" className="ms-2">
-        Search
-      </Button>
-    </Form>
+    <div className="row justify-content-center">
+      <div className="col-md-8">
+        <Form onSubmit={handleSubmit} className="d-flex mb-4">
+          <Form.Control
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={handleChange}
+          />
+          <Button type="submit" variant="primary" className="ms-2">
+            Search
+          </Button>
+        </Form>
+      </div>
+    </div>
   );
 };
 
