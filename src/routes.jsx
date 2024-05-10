@@ -10,6 +10,11 @@ import PrivateRoutes from "./PrivateRoutes";
 import SignupForm from "./components/Auth/SignupForm";
 import ProfileForm from "./components/ProfileForm";
 
+/**
+ * Router configuration for the application using react-router-dom.
+ * @returns {ReactElement} - React element representing the router configuration.
+ */
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +31,8 @@ const router = createBrowserRouter([
         element: <SignupForm />,
       },
       {
+        // Routes for pages accessible only to authorized users
+
         element: <PrivateRoutes />,
         children: [
           {

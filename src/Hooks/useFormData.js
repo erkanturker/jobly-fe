@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
+/**
+ * Custom React hook for managing form fields state and updating state based on user input.
+ * @param {object} initialValue - Initial values for form fields.
+ * @returns {Array} - Array containing current form fields state and a function to update the state.
+ */
 
 const useFormData = (initialValue) => {
   const [formData, setFormData] = useState(initialValue);

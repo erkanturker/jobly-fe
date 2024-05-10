@@ -1,27 +1,49 @@
+/**
+ * Component: SignupForm
+ * Description: Component for user signup form.
+
+ * This component provides a form for user signup. It handles form submission, validation,
+ * and displays error messages if signup fails.
+ */
+
 import React, { useState } from "react";
 import useFormData from "../../Hooks/useFormData";
 import { Button, Form } from "react-bootstrap";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import CustomAlert from "../../CommonJsx/CustomAlert";
 
+/**
+ * Component for user signup form.
+ * @returns {ReactElement} - React element representing the signup form component.
+ */
+
 const SignupForm = () => {
+  // State variables for form data, form errors, and alert visibility
   const [formData, setFormData] = useFormData();
   const [formErrors, setFormErrors] = useState([]);
   const [alertVisible, setAlertVisible] = useState(true);
+
+  // Accessing signup function and currentUser from outlet context
   const { signup, currentUser } = useOutletContext();
+
+  // Hook for navigating to different routes
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await signup(formData);
     if (result.success) {
+      // If signup is successful, navigate to the home page
       navigate("/");
     } else {
+      // If signup fails, set form errors and display alert
       setFormErrors(result.error);
       setAlertVisible(true);
     }
   };
 
+  // Redirect to home page if the user is already logged in
   if (currentUser) {
     return <Navigate to="/" />;
   }

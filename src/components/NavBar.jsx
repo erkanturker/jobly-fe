@@ -5,14 +5,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 
 const NavBar = ({ onLogout, currentUser }) => {
-  let isLoggedIn;
-
-  if (currentUser === null) {
-    isLoggedIn = false;
-  } else {
-    isLoggedIn = true;
-  }
-
+  // Determine if the user is logged in
+  const isLoggedIn = currentUser !== null;
   return (
     <Navbar bg="primary" data-bs-theme="dark">
       <Container fluid className="px-2">

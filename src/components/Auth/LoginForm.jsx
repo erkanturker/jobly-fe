@@ -1,29 +1,47 @@
+/**
+ * Component: LoginForm
+ * This component provides a form for user login. It handles form submission, validation,
+ * and displays error messages if login fails.
+ */
+
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import CustomAlert from "../../CommonJsx/CustomAlert";
 import useFormData from "../../Hooks/useFormData";
 
+/**
+ * Component for user login form.
+ * @returns {ReactElement} - React element representing the login form component.
+ */
 const LoginForm = () => {
+  // State variables for form data, form errors, and alert visibility
   const [formData, setFormData] = useFormData({ username: "", password: "" });
   const [formErrors, setFormErrors] = useState([]);
   const [alertVisible, setAlertVisible] = useState(true);
 
+  // Hook for navigating to different routes
   const navigate = useNavigate();
+
+  // Accessing login function and currentUser from outlet context
   const { login, currentUser } = useOutletContext();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let result = await login(formData);
     if (result.success) {
+      // If login is successful, navigate to the home page
       navigate("/");
     } else {
+      // If login fails, set form errors and display alert
       setFormErrors(result.error);
       setAlertVisible(true);
     }
   };
 
+  // Redirect to home page if the user is already logged in
   if (currentUser) {
     return <Navigate to="/" />;
   }

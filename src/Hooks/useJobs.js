@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import JoblyApi from "../api";
 
+/**
+ * Custom React hook for fetching jobs data based on a query.
+ * @param {string} query - Optional parameter for filtering jobs by title.
+ * @returns {object} - Object containing fetched data, error, and loading state.
+ */
+
 const useJobs = (query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  
 
   useEffect(() => {
     const fetchData = async () => {
