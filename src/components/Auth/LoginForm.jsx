@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
-import CustomAlert from "../../CommonJsx/CustomAlert";
+import CustomAlert from "../CommonJsx/CustomAlert";
 import useFormData from "../../Hooks/useFormData";
 
 /**

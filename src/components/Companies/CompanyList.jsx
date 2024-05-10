@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import useCompanies from "../../Hooks/useCompanies";
-import SearchBox from "../SearchBox";
+import SearchBox from "../CommonJsx/SearchBox";
 import CompanyCard from "./CompanyCard";
 
 export const CompanyList = () => {

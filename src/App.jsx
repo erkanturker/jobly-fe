@@ -39,6 +39,7 @@ function App() {
           // Fetch current user data using the username
           let currentUser = await JoblyApi.getCurrentUser(username);
           setCurrentUser(currentUser);
+          console.log(currentUser);
         } catch (error) {
           console.error("App loadUserInfo: problem loading", error);
         }

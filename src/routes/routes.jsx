@@ -1,14 +1,14 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import LoginForm from "./components/Auth/LoginForm";
-import CompanyDetail from "./components/Companies/CompanyDetail";
-import CompanyList from "./components/Companies/CompanyList";
-import JobList from "./components/Jobs/JobList";
-import MainPage from "./components/MainPage";
+import App from "../App";
+import LoginForm from "../components/Auth/LoginForm";
+import CompanyDetail from "../components/Companies/CompanyDetail";
+import CompanyList from "../components/Companies/CompanyList";
+import JobList from "../components/Jobs/JobList";
+import MainPage from "../components/MainPage";
 import PrivateRoutes from "./PrivateRoutes";
-import SignupForm from "./components/Auth/SignupForm";
-import ProfileForm from "./components/ProfileForm";
+import SignupForm from "../components/Auth/SignupForm";
+import ProfileForm from "../components/ProfileForm";
 
 /**
  * Router configuration for the application using react-router-dom.
