@@ -23,6 +23,7 @@ const CompanyDetail = () => {
       {company.jobs.map(({ id, title, salary, equity }) => (
         <CompanyJobCard
           key={id}
+          id={id}
           title={title}
           salary={salary}
           equity={equity}

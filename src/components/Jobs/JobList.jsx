@@ -3,10 +3,12 @@ import Spinner from "react-bootstrap/Spinner";
 import useJobs from "../../Hooks/useJobs";
 import SearchBox from "../SearchBox";
 import JobDetailCard from "./JobDetailCard";
+import { useOutletContext } from "react-router-dom";
 
 const JobList = () => {
   const [query, setQuery] = useState("");
   const { data: jobs, error, isLoading } = useJobs(query);
+
 
   const handleSetQuery = (query) => {
     setQuery(query);
@@ -31,6 +33,7 @@ const JobList = () => {
           salary={salary}
           equity={equity}
           key={id}
+          id={id}
         />
       ))}
     </div>
