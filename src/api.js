@@ -16,8 +16,6 @@ class JoblyApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug(import.meta.env.VITE_REACT_APP_BASE_URL);
-
     console.debug("API Call:", endpoint, data, method);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
