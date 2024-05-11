@@ -33,29 +33,105 @@ class JoblyApi {
     }
   }
 
-  // Individual API routes
+  /**
+   * Get authentication token for a user.
+   * @param {object} data - User credentials.
+   * @returns {Promise<string>} - Resolves with authentication token.
+   */
+  static async authToken(data) {
+    let res = await this.request(`auth/token`, data, "post");
+    return res.token;
+  }
 
-  /** Get details on a company by handle. */
+  /**
+   * Get details of all companies.
+   * @returns {Promise<Array<object>>} - Resolves with an array of company details.
+   */
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
 
+  /**
+   * Register a new user.
+   * @param {object} data - User registration details.
+   * @returns {Promise<string>} - Resolves with authentication token.
+   */
+
+  static async createUser(data) {
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+
+  /**
+   * Update user details.
+   * @param {string} username - Username of the user.
+   * @param {object} data - User details to update.
+   * @returns {Promise<object>} - Resolves with updated user details.
+   */
+  static async updateUser(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+
+  /**
+   * Get details of a company by its handle.
+   * @param {string} handle - Company handle.
+   * @returns {Promise<object>} - Resolves with company details.
+   */
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  // Get all Companies
-
+  /**
+   * Get details of all companies.
+   * @returns {Promise<Array<object>>} - Resolves with an array of company details.
+   */
   static async getAllCompanies() {
     let res = await this.request(`companies`);
     return res.companies;
   }
 
-  // obviously, you'll add a lot here ...
-}
+  /**
+   * Search companies by name.
+   * @param {string} name - Company name to search.
+   * @returns {Promise<Array<object>>} - Resolves with an array of matching company details.
+   */
+  static async getCompanyByName(name) {
+    let res = await this.request(`companies?name=${name}`);
+    return res.companies;
+  }
 
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  /**
+   * Get details of all jobs.
+   * @returns {Promise<Array<object>>} - Resolves with an array of job details.
+   */
+  static async getAllJobs() {
+    let res = await this.request("jobs");
+    return res.jobs;
+  }
+
+  /**
+   * Search jobs by title.
+   * @param {string} title - Job title to search.
+   * @returns {Promise<Array<object>>} - Resolves with an array of matching job details.
+   */
+  static async getJobsByTitle(title) {
+    let res = await this.request(`jobs?title=${title}`);
+    return res.jobs;
+  }
+
+  /**
+   * Apply for a job.
+   * @param {string} username - Username of the user applying for the job.
+   * @param {string} jobId - ID of the job to apply for.
+   * @returns {Promise<boolean>} - Resolves with true if the application is successful.
+   */
+  static async applyJob(username, jobId) {
+    let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
+    return res.applied;
+  }
+}
 
 export default JoblyApi;
