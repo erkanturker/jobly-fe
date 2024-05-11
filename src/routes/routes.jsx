@@ -9,6 +9,7 @@ import MainPage from "../components/MainPage";
 import PrivateRoutes from "./PrivateRoutes";
 import SignupForm from "../components/Auth/SignupForm";
 import ProfileForm from "../components/ProfileForm";
+import ErrorPage from "../components/ErrorPage";
 
 /**
  * Router configuration for the application using react-router-dom.
@@ -18,6 +19,7 @@ import ProfileForm from "../components/ProfileForm";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     element: <App />,
     children: [
       { index: true, element: <MainPage /> },
