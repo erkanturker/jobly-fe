@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 
-const NavBar = ({ onLogout, currentUser }) => {
+const NavigationBar = ({ onLogout, currentUser }) => {
   // Determine if the user is logged in
   const isLoggedIn = currentUser !== null;
   return (
@@ -57,4 +57,4 @@ const NavBar = ({ onLogout, currentUser }) => {
   );
 };
 
-export default NavBar;
+export default NavigationBar;

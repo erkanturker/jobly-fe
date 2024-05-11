@@ -10,7 +10,7 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import useLocalStorage from "./Hooks/useLocalStorage";
 import JoblyApi from "./api";
-import NavBar from "./components/NavBar";
+import NavigationBar from "./components/NavigationBar";
 
 // Storage key for authentication token
 export const TOKEN_STORAGE_ID = "authToken";
@@ -116,7 +116,7 @@ function App() {
   // Render navigation bar and child components within React-dom Outlet Container
   return (
     <>
-      <NavBar onLogout={logout} currentUser={currentUser} />
+      <NavigationBar onLogout={logout} currentUser={currentUser} />
       <div className="container mt-5">
         <div className="row justify-content-center">
           <Outlet
