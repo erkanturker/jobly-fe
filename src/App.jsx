@@ -5,15 +5,17 @@
  */
 
 import { jwtDecode } from "jwt-decode";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import useLocalStorage from "./Hooks/useLocalStorage";
 import JoblyApi from "./api";
 import NavigationBar from "./components/NavigationBar";
+import LoadingSpinner from "./components/CommonJsx/LoadingSpinner";
 
 // Storage key for authentication token
 export const TOKEN_STORAGE_ID = "authToken";
+export const UserContext = createContext(null); // Create user context
 
 /**
  * Main component of the Jobly application, responsible for managing authentication,
@@ -23,11 +25,10 @@ export const TOKEN_STORAGE_ID = "authToken";
 function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [currentUser, setCurrentUser] = useState(null);
+  const [infoLoaded, setInfoLoaded] = useState(false);
 
   // Effect hook to load user information when the component mounts or token changes
   useEffect(() => {
-    console.debug("App useEffect loadUserInfo", "token=", token);
-
     async function getCurrentUser() {
       if (token) {
         try {
@@ -39,12 +40,16 @@ function App() {
           // Fetch current user data using the username
           let currentUser = await JoblyApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          console.log(currentUser);
         } catch (error) {
           console.error("App loadUserInfo: problem loading", error);
         }
       }
+      setInfoLoaded(true);
     }
+    // set infoLoaded to false while async getCurrentUser runs; once the
+    // data is fetched (or even if an error happens!), this will be set back
+    // to false to control the spinner.
+    //setInfoLoaded(false);
     getCurrentUser();
   }, [token]);
 
@@ -113,17 +118,21 @@ function App() {
     setToken(null);
   };
 
+  if (!infoLoaded) return <LoadingSpinner />;
+
   // Render navigation bar and child components within React-dom Outlet Container
   return (
     <>
-      <NavigationBar onLogout={logout} currentUser={currentUser} />
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          <Outlet
-            context={{ login, signup, currentUser, updateUser, applyJob }}
-          />
+      <>
+        <NavigationBar onLogout={logout} currentUser={currentUser} />
+        <div className="container mt-5">
+          <div className="row justify-content-center">
+            <Outlet
+              context={{ login, signup, currentUser, updateUser, applyJob }}
+            />
+          </div>
         </div>
-      </div>
+      </>
     </>
   );
 }

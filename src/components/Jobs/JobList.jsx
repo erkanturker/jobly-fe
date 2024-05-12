@@ -3,6 +3,7 @@ import Spinner from "react-bootstrap/Spinner";
 import useJobs from "../../Hooks/useJobs";
 import SearchBox from "../CommonJsx/SearchBox";
 import JobDetailCard from "./JobDetailCard";
+import LoadingSpinner from "../CommonJsx/LoadingSpinner";
 
 const JobList = () => {
   const [query, setQuery] = useState("");
@@ -16,11 +17,7 @@ const JobList = () => {
     <div className="col-md-7">
       <SearchBox onSearch={handleSetQuery} />
 
-      {isLoading && (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+      {isLoading && <LoadingSpinner />}
 
       {error && <div>Error fetching companies: {error.message}</div>}
 
