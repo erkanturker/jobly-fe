@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import useFormData from "../Hooks/useFormData";
 import { useOutletContext } from "react-router-dom";
-import CustomAlert from "./CommonJsx/CustomAlert";
+import CustomAlert from "../CommonJsx/CustomAlert";
 
 const ProfileForm = () => {
   const { currentUser, updateUser } = useOutletContext();

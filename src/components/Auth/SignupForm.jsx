@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import useFormData from "../../Hooks/useFormData";
 import { Button, Form } from "react-bootstrap";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
-import CustomAlert from "../CommonJsx/CustomAlert";
+import CustomAlert from "../../CommonJsx/CustomAlert";
 
 /**
  * Component for user signup form.
@@ -23,11 +23,11 @@ const SignupForm = () => {
   const [formErrors, setFormErrors] = useState([]);
   const [alertVisible, setAlertVisible] = useState(true);
 
-  // Accessing signup function and currentUser from outlet context
-  const { signup, currentUser } = useOutletContext();
-
   // Hook for navigating to different routes
   const navigate = useNavigate();
+
+  // Accessing signup function and currentUser from outlet context
+  const { signup, currentUser } = useOutletContext();
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
