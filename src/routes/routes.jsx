@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { index: true, element: <MainPage /> },
 
       {
-        path: "login",
+        path: "/login",
         element: <LoginForm />,
       },
       {
@@ -38,19 +38,19 @@ const router = createBrowserRouter([
         element: <PrivateRoutes />,
         children: [
           {
-            path: "companies",
+            path: "/companies",
             element: <CompanyList />,
           },
           {
-            path: "companies/:handle",
+            path: "/companies/:handle",
             element: <CompanyDetail />,
           },
           {
-            path: "jobs",
+            path: "/jobs",
             element: <JobList />,
           },
           {
-            path: "profile",
+            path: "/profile",
             element: <ProfileForm />,
           },
         ],
